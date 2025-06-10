@@ -393,7 +393,7 @@ Additional elements are defined for the <tt>&lt;info&gt;</tt> response.
 <t>
 When an <tt>&lt;info&gt;</tt> command has been processed successfully, the EPP <tt>&lt;resData&gt;</tt> element <bcp14>MUST</bcp14> contain child elements as described in <xref section="3.1.2" sectionFormat="of" target="RFC5731"/>.
 In addition, the EPP <tt>&lt;extension&gt;</tt> element <bcp14>MUST</bcp14> contain a child <tt>&lt;rgp:infData&gt;</tt> element that identifies the registry grace period namespace and the location of the registry grace period schema.
-The <tt>&lt;rgp:infData&gt;</tt> element contains a single <tt>&lt;rgp:rgpStatus&gt;</tt> element that contains a single attribute "<tt>s</tt>" whose value describes the current grace period status of the domain.
+The <tt>&lt;rgp:infData&gt;</tt> element contains one or more <tt>&lt;rgp:rgpStatus&gt;</tt> elements that contain a single attribute "<tt>s</tt>" whose values describe the current grace period status of the domain.
 Possible status values are described in <xref target="status-values"/>.
 </t>
 
