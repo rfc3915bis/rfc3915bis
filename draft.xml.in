@@ -2,7 +2,10 @@
 <!DOCTYPE rfc [
 <!ENTITY RFC954 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.954.xml">
 <!ENTITY RFC2119 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2781 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2781.xml">
 <!ENTITY RFC3339 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3339.xml">
+<!ENTITY RFC3629 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3629.xml">
+<!ENTITY RFC3688 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml">
 <!ENTITY RFC3915 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3915.xml">
 <!ENTITY RFC5730 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC5731 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml">
@@ -75,7 +78,7 @@ Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol
 <t>
 This document describes an <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref> extension mapping for the management of Domain Name System (DNS) domain names subject to "grace period" policies.
 Grace period policies exist to allow protocol actions to be reversed or otherwise revoked during a short period of time after the protocol action has been performed.
-This mapping extends the <xref target="RFC5731">EPP domain name mapping</xref> to provide additional features required for grace period processing.
+This mapping extends <xref target="RFC5731">the EPP domain name mapping</xref> to provide additional features required for grace period processing.
 </t>
 
 <t>
@@ -170,6 +173,8 @@ the allowable lexical representations for the <tt>xs:boolean</tt> datatype are t
 Implementations <bcp14>MUST</bcp14> support both styles of lexical representation.
 </t>
 </section>
+
+</section><!-- Introduction -->
 
 <section title="Redemption Grace Period State Diagram">
 
@@ -266,11 +271,11 @@ The domain name is available for re-registration.
 <section title="Object Attributes">
 
 <t>
-This extension adds additional elements to the <xref target="RFC5731">EPP domain name mapping</xref>.
+This extension adds additional elements to <xref target="RFC5731">the EPP domain name mapping</xref>.
 Only new element descriptions are described here.
 </t>
 
-<section title="Status Values">
+<section anchor="status-values" title="Status Values">
 
 <t>
 This extension defines new status values to represent the different states that a domain name can be in as a result of grace period processing.
@@ -316,7 +321,7 @@ This status value is used to describe a domain that is in the process of being r
 <dt><tt>pendingDelete</tt></dt>
 <dd>
 This status value is used to describe a domain that has entered the purge processing state after completing the "<tt>redemptionPeriod</tt>" state.
-A domain in this status MUST also be in the "<tt>pendingDelete</tt>" status described in the <xref section="2.3" sectionFormat="of" target="RFC5731">EPP domain mapping</xref>.
+A domain in this status MUST also be in the "<tt>pendingDelete</tt>" status described in <xref section="2.3" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
 </dd>
 
 </dl>
@@ -354,8 +359,6 @@ English is the default language used within the statements, but other languages 
 
 </section><!-- Object Attributes -->
 
-</section><!-- Introduction -->
-
 <section title="EPP Command Mapping">
 
 <t>
@@ -382,33 +385,629 @@ This extension does not add any elements to the EPP <tt>&lt;check&gt;</tt> comma
 
 <section title="EPP &lt;info&gt; Command">
 
+<t>
+This extension does not add any elements to the EPP <tt>&lt;info&gt;</tt> command described in <xref section="3.1.2" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+Additional elements are defined for the <tt>&lt;info&gt;</tt> response.
+</t>
+
+<t>
+When an <tt>&lt;info&gt;</tt> command has been processed successfully, the EPP <tt>&lt;resData&gt;</tt> element <bcp14>MUST</bcp14> contain child elements as described in <xref section="3.1.2" sectionFormat="of" target="RFC5731"/>.
+In addition, the EPP <tt>&lt;extension&gt;</tt> element <bcp14>MUST</bcp14> contain a child <tt>&lt;rgp:infData&gt;</tt> element that identifies the registry grace period namespace and the location of the registry grace period schema.
+The <tt>&lt;rgp:infData&gt;</tt> element contains a single <tt>&lt;rgp:rgpStatus&gt;</tt> element that contains a single attribute "<tt>s</tt>" whose value describes the current grace period status of the domain.
+Possible status values are described in <xref target="status-values"/>.
+</t>
+
+<t>
+Example <tt>&lt;info&gt;</tt> response for "<tt>addPeriod</tt>" status:
+</t>
+
+<figure><artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <domain:infData
+S:       xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+S:        <domain:name>example.com</domain:name>
+S:        <domain:roid>EXAMPLE1-REP</domain:roid>
+S:        <domain:status s="ok"/>
+S:        <domain:ns>
+S:          <domain:hostObj>ns1.example.com</domain:hostObj>
+S:          <domain:hostObj>ns1.example.net</domain:hostObj>
+S:        </domain:ns>
+S:        <domain:clID>ClientX</domain:clID>
+S:        <domain:crID>ClientX</domain:crID>
+S:        <domain:crDate>2003-11-26T22:00:00.0Z</domain:crDate>
+S:        <domain:exDate>2005-11-26T22:00:00.0Z</domain:exDate>
+S:        <domain:authInfo>
+S:          <domain:pw>2fooBAR</domain:pw>
+S:        </domain:authInfo>
+S:      </domain:infData>
+S:    </resData>
+S:    <extension>
+S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:        <rgp:rgpStatus s="addPeriod"/>
+S:      </rgp:infData>
+S:    </extension>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+]]></artwork></figure>
+
+<t>
+Example <tt>&lt;info&gt;</tt> response for <tt>&quot;redemptionPeriod&quot;</tt> status:
+</t>
+
+<figure><artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <domain:infData
+S:       xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+S:        <domain:name>example.com</domain:name>
+S:        <domain:roid>EXAMPLE1-REP</domain:roid>
+S:        <domain:status s="pendingDelete"/>
+S:        <domain:ns>
+S:          <domain:hostObj>ns1.example.com</domain:hostObj>
+S:          <domain:hostObj>ns1.example.net</domain:hostObj>
+S:        </domain:ns>
+S:        <domain:clID>ClientX</domain:clID>
+S:        <domain:crID>ClientY</domain:crID>
+S:        <domain:crDate>1999-04-03T22:00:00.0Z</domain:crDate>
+S:        <domain:upID>ClientX</domain:upID>
+S:        <domain:upDate>1999-12-03T09:00:00.0Z</domain:upDate>
+S:        <domain:exDate>2005-04-03T22:00:00.0Z</domain:exDate>
+S:        <domain:trDate>2000-04-08T09:00:00.0Z</domain:trDate>
+S:        <domain:authInfo>
+S:          <domain:pw>2fooBAR</domain:pw>
+S:        </domain:authInfo>
+S:      </domain:infData>
+S:    </resData>
+S:    <extension>
+S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:        <rgp:rgpStatus s="redemptionPeriod"/>
+S:      </rgp:infData>
+S:    </extension>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
+]]></artwork></figure>
+
+<t>
+Example <tt>&lt;info&gt;</tt> response extension for "<tt>pendingRestore</tt>" status (note that only the extension element changes from the first example):
+</t>
+
+<figure><artwork><![CDATA[
+S:<extension>
+S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:    <rgp:rgpStatus s="pendingRestore"/>
+S:  </rgp:infData>
+S:</extension>
+]]></artwork></figure>
+
+<t>
+Example <tt>&lt;info&gt;</tt> response extension for "<tt>pendingDelete</tt>" status (note that only the extension element changes from the first example):
+</t>
+
+<figure><artwork><![CDATA[
+S:<extension>
+S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:    <rgp:rgpStatus s="pendingDelete"/>
+S:  </rgp:infData>
+S:</extension>
+]]></artwork></figure>
+
 </section><!-- EPP <info> command -->
 
 <section title="EPP &lt;transfer&gt; Command">
 
-</section><!-- EPP <transfer> command -->
+<t>
+This extension does not add any elements to the EPP <tt>&lt;transfer&gt;</tt> command or <tt>&lt;transfer&gt;</tt> response described in <xref section="3.1.3" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+</t>
 
+</section><!-- EPP <transfer> command -->
 
 </section><!-- EPP Query Commands -->
 
 <section title="EPP Transform Commands">
+
+<t>
+EPP provides five commands to transform objects:
+<tt>&lt;create&gt;</tt> to create an instance of an object,
+<tt>&lt;delete&gt;</tt> to delete an instance of an object,
+<tt>&lt;renew&gt;</tt> to extend the validity period of an object,
+<tt>&lt;transfer&gt;</tt> to manage object sponsorship changes,
+and <tt>&lt;update&gt;</tt> to change information associated with an object.
+</t>
+
+<section title="EPP &lt;create&gt; Command">
+
+<t>
+This extension does not add any elements to the EPP <tt>&lt;create&gt;</tt> command or <tt>&lt;create&gt;</tt> response described in <xref section="3.2.1" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+</t>
+
+</section>
+
+<section title="EPP &lt;delete&gt; Command">
+
+<t>
+This extension does not add any elements to the EPP <tt>&lt;delete&gt;</tt> command or <tt>&lt;delete&gt;</tt> response described in <xref section="3.2.2" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+</t>
+
+</section>
+
+<section title="EPP &lt;renew&gt; Command">
+
+<t>
+This extension does not add any elements to the EPP <tt>&lt;renew&gt;</tt> command or <tt>&lt;renew&gt;</tt> response described in <xref section="3.2.3" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+</t>
+
+</section>
+
+<section title="EPP &lt;transfer&gt; Command">
+
+<t>
+This extension does not add any elements to the EPP <tt>&lt;transfer&gt;</tt> command or <tt>&lt;transfer&gt;</tt> response described in <xref section="3.2.4" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+</t>
+
+</section>
+
+<section title="EPP &lt;update&gt; Command">
+
+<t>
+This extension defines additional elements to extend the EPP <tt>&lt;update&gt;</tt> command and response described in <xref section="3.2.5" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref> for redemption grace period processing.
+</t>
+
+<t>
+The EPP <tt>&lt;update&gt;</tt> command provides a transform operation that allows a client to change the state of a domain object.
+The registry grace period extension modifies base update processing to support redemption of domain names for which a <tt>&lt;delete&gt;</tt> command has been processed, but the name has not yet been purged.
+</t>
+
+<t>
+Section 3.2.5 of the EPP domain mapping describes the elements that have to be specified within an <tt>&lt;update&gt;</tt> command.
+The requirement to provide at least one <tt>&lt;domain:add&gt;</tt>, <tt>&lt;domain:rem&gt;</tt>, or <tt>&lt;domain:chg&gt;</tt> element is updated by this extension such that at least one empty <tt>&lt;domain:add&gt;</tt>, <tt>&lt;domain:rem&gt;</tt>, or <tt>&lt;domain:chg&gt;</tt> element <bcp14>MUST</bcp14> be present if this extension is specified within an <tt>&lt;update&gt;</tt> command.
+This requirement is updated to disallow the possibility of modifying a domain object as part of redemption grace period recovery processing.
+</t>
+
+<t>
+In addition to the EPP command elements described in <xref section="4.2.5" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>, the <tt>&lt;update&gt;</tt> command <bcp14>MUST</bcp14> contain an <tt>&lt;extension&gt;</tt> element.
+The <tt>&lt;extension&gt;</tt> element <bcp14>MUST</bcp14> contain a child <tt>&lt;rgp:update&gt;</tt> element that identifies the registry grace period namespace and the location of the registry grace period schema.
+The <tt>&lt;rgp:update&gt;</tt> element contains a single <tt>&lt;rgp:restore&gt;</tt> element that contains an <bcp14>OPTIONAL</bcp14> <tt>&lt;rgp:report&gt;</tt> element that MAY be used to deliver a redemption grace period restore report.
+</t>
+
+<t>
+The <tt>&lt;rgp:restore&gt;</tt> element contains a <bcp14>REQUIRED</bcp14> &quot;op&quot; attribute that describes the redemption grace period operation being requested.
+Two values are defined: &quot;request&quot; is used to identify a restore request that does not include a restore report, and &quot;report&quot; is used to identify a restore request that contains a restore report.
+A report <bcp14>MAY</bcp14> be submitted more than once if corrections are required.
+If the value of the &quot;op&quot; attribute is &quot;request&quot; an <tt>&lt;rgp:report&gt;</tt> element <bcp14>MUST NOT</bcp14> be present.
+If the value of the &quot;op&quot; attribute is &quot;report&quot; an <tt>&lt;rgp:report&gt;</tt> element <bcp14>MUST</bcp14> be present.
+</t>
+
+<t>
+The <tt>&lt;rgp:report&gt;</tt> element contains the following child elements:
+</t>
+
+<ul>
+
+<li>
+An <tt>&lt;rgp:preData&gt;</tt> element that contains a copy of the registration data that existed for the domain name prior to the domain name being deleted.
+This element <bcp14>MAY</bcp14> contain both text and XML markup.
+</li>
+
+<li>
+An <tt>&lt;rgp:postData&gt;</tt> element that contains a copy of the registration data that exists for the domain name at the time the restore report is submitted.
+This element <bcp14>MAY</bcp14> contain both text and XML markup.
+</li>
+
+<li>
+  An <tt>&lt;rgp:delTime&gt;</tt> element that contains the date and time when the domain name delete request was sent to the server.
+</li>
+
+<li>
+  An <tt>&lt;rgp:resTime&gt;</tt> element that contains the date and time when the original <tt>&lt;rgp:restore&gt;</tt> command was sent to the server.
+</li>
+
+<li>
+An <tt>&lt;rgp:resReason&gt;</tt> element that contains a brief explanation of the reason for restoring the domain name.
+</li>
+
+<li>
+An <tt>&lt;rgp:statement&gt;</tt> element that contains a text statement that the client has not restored the domain name in order to assume the rights to use or sell the domain name for itself or for any third party.
+Supporting information related to this statement <bcp14>MAY</bcp14> be supplied in the <tt>&lt;rgp:other&gt;</tt> element described below.
+An OPTIONAL &quot;lang&quot; attribute <bcp14>MAY</bcp14> be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
+</li>
+
+<li>
+A second <tt>&lt;rgp:statement&gt;</tt> element that contains a text statement that the information in the restore report is factual to the best of the client's knowledge.
+An <bcp14>OPTIONAL</bcp14> &quot;<tt>lang</tt>&quot; attribute MAY be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
+</li>
+
+<li>
+An <bcp14>OPTIONAL</bcp14> <tt>&lt;rgp:other&gt;</tt> element that contains any information needed to support the statements provided by the client.
+This element <bcp14>MAY</bcp14> contain both text and XML markup.
+</li>
+
+</ul>
+
+<t>
+Example <tt>&lt;update&gt;</tt> command without a restore report:
+</t>
+
+<figure><artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <update>
+C:      <domain:update
+C:       xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+C:        <domain:name>example.com</domain:name>
+C:        <domain:chg/>
+C:      </domain:update>
+C:    </update>
+C:    <extension>
+C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+C:        <rgp:restore op="request"/>
+C:      </rgp:update>
+C:    </extension>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
+]]></artwork></figure>
+
+<t>
+Example <tt>&lt;update&gt;</tt> command with a restore report:
+</t>
+
+<figure><artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <update>
+C:      <domain:update
+C:       xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+C:        <domain:name>example.com</domain:name>
+C:        <domain:chg/>
+C:      </domain:update>
+C:    </update>
+C:    <extension>
+C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+C:        <rgp:restore op="report">
+C:          <rgp:report>
+C:            <rgp:preData>Pre-delete registration data goes here.
+C:            Both XML and free text are allowed.</rgp:preData>
+C:            <rgp:postData>Post-restore registration data goes here.
+C:            Both XML and free text are allowed.</rgp:postData>
+C:            <rgp:delTime>2003-07-10T22:00:00.0Z</rgp:delTime>
+C:            <rgp:resTime>2003-07-20T22:00:00.0Z</rgp:resTime>
+C:            <rgp:resReason>Registrant error.</rgp:resReason>
+C:            <rgp:statement>This registrar has not restored the
+C:            Registered Name in order to assume the rights to use
+C:            or sell the Registered Name for itself or for any
+C:            third party.</rgp:statement>
+C:            <rgp:statement>The information in this report is
+C:            true to best of this registrar's knowledge, and this
+C:            registrar acknowledges that intentionally supplying
+C:            false information in this report shall constitute an
+C:            incurable material breach of the
+C:            Registry-Registrar Agreement.</rgp:statement>
+C:            <rgp:other>Supporting information goes
+C:            here.</rgp:other>
+C:          </rgp:report>
+C:        </rgp:restore>
+C:      </rgp:update>
+C:    </extension>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>
+]]></artwork></figure>
+
+<t>
+When an extended <tt>&lt;update&gt;</tt> command without a restore report has been processed successfully, the EPP response is as described in <xref section="4.2.5" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref> except that an extension element is added to describe grace period status as a result of processing the <tt>&lt;update&gt;</tt> command.
+The extension element contains a single child element (<tt>&lt;upData&gt;</tt>) that itself contains a single child element (<tt>&lt;rgpStatus&gt;</tt>) that contains a single attribute &quot;<tt>s</tt>&quot; whose value <bcp14>MUST</bcp14> be &quot;<tt>pendingRestore</tt>&quot; if the &lt;<tt>restore</tt>&gt; request has been accepted.
+</t>
+
+<t>
+Example &quot;restore request&quot; &lt;<tt>update</tt>&gt; response:
+</t>
+
+<figure><artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg lang="en">Command completed successfully</msg>
+S:    </result>
+S:    <extension>
+S:      <rgp:upData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:        <rgp:rgpStatus s="pendingRestore"/>
+S:      </rgp:upData>
+S:    </extension>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>
+]]></artwork></figure>
+
+<t>
+When an extended <tt>&lt;update&gt;</tt> command with a restore report has been processed successfully, the EPP response is as described in <xref section="4.2.5" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref> with no registry grace period extension.
+Registry grace period extension is not required because acceptance of the restore report completes redemption grace period processing.
+</t>
+
+</section><!-- EPP <update> Command -->
+
 </section><!-- EPP Transform Commands -->
 
 </section><!-- EPP Command Mapping -->
+
+<section title="Formal Syntax">
+
+<t>
+An EPP object mapping is specified in XML Schema notation.
+The formal syntax presented here is a complete schema representation of the object mapping suitable for automated validation of EPP XML instances.
+The "<tt>BEGIN</tt>" and "<tt>END</tt>" tags are not part of the schema; they are used to note the beginning and ending of the schema for URI registration purposes.
+</t>
+
+<figure><artwork><![CDATA[
+BEGIN
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema targetNamespace="urn:ietf:params:xml:ns:rgp-1.0"
+        xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+  <annotation>
+    <documentation>
+      Extensible Provisioning Protocol v1.0
+      domain name extension schema for registry grace period
+      processing.
+    </documentation>
+  </annotation>
+
+<!--
+Child elements found in EPP commands.
+-->
+  <element name="update" type="rgp:updateType"/>
+
+<!--
+Child elements of the <update> command for the
+redemption grace period.
+-->
+  <complexType name="updateType">
+    <sequence>
+      <element name="restore" type="rgp:restoreType"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="restoreType">
+    <sequence>
+      <element name="report" type="rgp:reportType"
+       minOccurs="0"/>
+    </sequence>
+    <attribute name="op" type="rgp:rgpOpType" use="required"/>
+  </complexType>
+
+<!--
+New redemption grace period operations can be defined
+by adding to this enumeration.
+-->
+  <simpleType name="rgpOpType">
+    <restriction base="token">
+      <enumeration value="request"/>
+      <enumeration value="report"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="reportType">
+    <sequence>
+      <element name="preData" type="rgp:mixedType"/>
+      <element name="postData" type="rgp:mixedType"/>
+      <element name="delTime" type="dateTime"/>
+      <element name="resTime" type="dateTime"/>
+      <element name="resReason" type="rgp:reportTextType"/>
+      <element name="statement" type="rgp:reportTextType"
+       maxOccurs="2"/>
+      <element name="other" type="rgp:mixedType"
+       minOccurs="0"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="mixedType">
+    <complexContent mixed="true">
+      <restriction base="anyType">
+        <sequence>
+          <any processContents="lax"
+           minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+      </restriction>
+    </complexContent>
+  </complexType>
+
+  <complexType name="reportTextType">
+    <complexContent mixed="true">
+      <restriction base="anyType">
+        <sequence>
+          <any processContents="lax"
+           minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="lang" type="language" default="en"/>
+      </restriction>
+    </complexContent>
+  </complexType>
+
+<!--
+Child response elements.
+-->
+  <element name="infData" type="rgp:respDataType"/>
+  <element name="upData" type="rgp:respDataType"/>
+
+<!--
+Response elements.
+-->
+  <complexType name="respDataType">
+    <sequence>
+      <element name="rgpStatus" type="rgp:statusType"
+       maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+<!--
+Status is a combination of attributes and an optional
+human-readable message that may be expressed in languages
+other than English.
+-->
+  <complexType name="statusType">
+    <simpleContent>
+      <extension base="normalizedString">
+        <attribute name="s" type="rgp:statusValueType"
+         use="required"/>
+        <attribute name="lang" type="language" default="en"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <simpleType name="statusValueType">
+    <restriction base="token">
+      <enumeration value="addPeriod"/>
+      <enumeration value="autoRenewPeriod"/>
+      <enumeration value="renewPeriod"/>
+      <enumeration value="transferPeriod"/>
+      <enumeration value="pendingDelete"/>
+      <enumeration value="pendingRestore"/>
+      <enumeration value="redemptionPeriod"/>
+    </restriction>
+  </simpleType>
+
+<!--
+End of schema.
+-->
+</schema>
+END]]></artwork></figure>
+
+</section><!-- Formal Syntax -->
+
+<section title="Internationalization Considerations">
+
+<t>
+EPP is represented in XML, which provides native support for encoding information using the Unicode character set and its more compact representations including <xref target="RFC3629">UTF-8</xref>.
+Conformant XML processors recognize both UTF-8 and <xref target="RFC2781">UTF-16</xref>.
+Though XML includes provisions to identify and use other character encodings through use of an "encoding" attribute in an <tt><![CDATA[<?xml?>]]></tt> declaration, use of UTF-8 is <bcp14>RECOMMENDED</bcp14> in environments where parser encoding support incompatibility exists.
+</t>
+
+<t>
+As an extension of <xref target="RFC5731">the EPP domain mapping</xref>, the elements, element content, attributes, and attribute values described in this document <bcp14>MUST</bcp14> inherit the internationalization conventions used to represent higher-layer domain and core protocol structures present in an XML instance that includes this extension.
+</t>
+
+</section><!-- Internationalization Considerations -->
+
+<section title="IANA Considerations">
+
+<t>
+This document uses URNs to describe XML namespaces and XML schemas conforming to a registry mechanism described in <xref target="RFC3688"/>.
+Two URI assignments were requested and have been registered by the IANA.
+</t>
+
+<t>
+Registration request for the registry grace period namespace:
+</t>
+
+<t>
+URI: urn:ietf:params:xml:ns:rgp-1.0
+</t>
+
+<t>
+Registrant Contact: See the "Author's Address" section of this document.
+</t>
+
+<t>
+XML: None.  Namespace URIs do not represent an XML specification.
+</t>
+
+<t>
+Registration request for the registry grace period XML schema:
+</t>
+
+<t>
+URI: urn:ietf:params:xml:schema:rgp-1.0
+</t>
+
+<t>
+Registrant Contact: See the "Author's Address" section of this
+document.
+</t>
+
+<t>
+XML: See the "Formal Syntax" section of this document.
+</t>
+
+</section><!-- IANA Considerations -->
+
+<section title="Security Considerations">
+
+<t>
+The mapping extensions described in this document do not provide any security services beyond those described by <xref target="RFC5730">EPP</xref>, <xref target="RFC5731">the EPP domain name mapping</xref>, and protocol layers used by EPP.
+The security considerations described in these other specifications apply to this specification as well.
+</t>
+
+<t>
+As with other domain object updates, redemption of a deleted domain object <bcp14>MUST</bcp14> be restricted to the sponsoring client as authenticated using the mechanisms described in sections <xref section="2.9.1.1" sectionFormat="of" target="RFC5730"/> and <xref section="7" sectionFormat="of" target="RFC5730"/>.
+Any attempt to recover a deleted domain object by any client other than the sponsoring client <bcp14>MUST</bcp14> be rejected with an appropriate EPP authorization error.
+</t>
+
+</section><!-- Security Considerations -->
+
+<section title="Acknowledgements">
+
+<t>
+The author would like to thank the following people who have provided
+significant contributions to the development of this document:
+</t>
+
+<t>
+James Gould, Antony Perkov, and Janusz Sienkiewicz.
+</t>
+
+</section><!-- Acknowledgements -->
 
 </middle>
 
 <back>
 
 <references title="Normative references">
-    &RFC954;
-    &RFC2119;
-    &RFC3339;
-    &RFC3915;
-    &RFC5730;
-    &RFC5731;
-    &RFC8174;
-    <reference anchor="XSD-DATATYPES" target="https://www.w3.org/TR/xmlschema-2/"><front><title>XML Schema Part 2: Datatypes Second Edition</title><author><organization>World Wide Web Consortium (W3C)</organization></author><date month="October" year="2004"/></front></reference>
+  &RFC954;
+  &RFC2119;
+  &RFC2781;
+  &RFC3339;
+  &RFC3629;
+  &RFC3688;
+  &RFC3915;
+  &RFC5730;
+  &RFC5731;
+  &RFC8174;
+  <reference
+    anchor="XSD-DATATYPES"
+    target="https://www.w3.org/TR/xmlschema-2/">
+    <front>
+      <title>XML Schema Part 2: Datatypes Second Edition</title>
+      <author>
+        <organization>World Wide Web Consortium (W3C)</organization>
+      </author>
+      <date month="October" year="2004"/>
+    </front>
+  </reference>
 </references>
 
 <references title="Informative references">
