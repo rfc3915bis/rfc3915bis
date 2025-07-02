@@ -930,9 +930,11 @@ As an extension of <xref target="RFC5731">the EPP domain mapping</xref>, the ele
 
 <section title="IANA Considerations">
 
+<section title="XML Namespace">
+
 <t>
 This document uses URNs to describe XML namespaces and XML schemas conforming to a registry mechanism described in <xref target="RFC3688"/>.
-Two URI assignments were requested and have been registered by the IANA.
+Two URI assignments are requested of the IANA.
 </t>
 
 <t>
@@ -968,6 +970,49 @@ document.
 XML: See the "Formal Syntax" section of this document.
 </t>
 
+</section><!-- XML Namespace -->
+
+<section title="EPP Extension Registry">
+
+<t>
+IANA is requested to register the EPP exetension described in this document in the "Extensions for the Extensible Provisioning Protocol (EPP)" registry described in <xref target="RFC7451"/>.
+The details of the registration are as follows:
+</t>
+
+<t>
+Name of Extension: Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol (EPP)
+</t>
+
+<t>
+Document Status: Standards Track
+</t>
+
+<t>
+Reference: URL of this document
+</t>
+
+<t>
+Registrant: IESG
+</t>
+
+<t>
+TLDs: Any
+</t>
+
+<t>
+IPR Disclosure: None
+</t>
+
+<t>
+Status: Active
+</t>
+
+<t>
+Notes: None
+</t>
+
+</section><!-- EPP Extension Registry -->
+
 </section><!-- IANA Considerations -->
 
 <section title="Security Considerations">
@@ -983,19 +1028,6 @@ Any attempt to recover a deleted domain object by any client other than the spon
 </t>
 
 </section><!-- Security Considerations -->
-
-<section title="Acknowledgements">
-
-<t>
-The author would like to thank the following people who have provided
-significant contributions to the development of this document:
-</t>
-
-<t>
-James Gould, Antony Perkov, and Janusz Sienkiewicz.
-</t>
-
-</section><!-- Acknowledgements -->
 
 </middle>
 
