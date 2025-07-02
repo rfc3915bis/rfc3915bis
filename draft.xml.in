@@ -443,7 +443,7 @@ S:        </domain:authInfo>
 S:      </domain:infData>
 S:    </resData>
 S:    <extension>
-S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 S:        <rgp:rgpStatus s="addPeriod"/>
 S:      </rgp:infData>
 S:    </extension>
@@ -487,7 +487,7 @@ S:        </domain:authInfo>
 S:      </domain:infData>
 S:    </resData>
 S:    <extension>
-S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:      <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 S:        <rgp:rgpStatus s="redemptionPeriod"/>
 S:      </rgp:infData>
 S:    </extension>
@@ -505,7 +505,7 @@ Example <tt>&lt;info&gt;</tt> response extension for "<tt>pendingRestore</tt>" s
 
 <figure><artwork><![CDATA[
 S:<extension>
-S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 S:    <rgp:rgpStatus s="pendingRestore"/>
 S:  </rgp:infData>
 S:</extension>
@@ -517,7 +517,7 @@ Example <tt>&lt;info&gt;</tt> response extension for "<tt>pendingDelete</tt>" st
 
 <figure><artwork><![CDATA[
 S:<extension>
-S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:  <rgp:infData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 S:    <rgp:rgpStatus s="pendingDelete"/>
 S:  </rgp:infData>
 S:</extension>
@@ -671,7 +671,7 @@ C:        <domain:chg/>
 C:      </domain:update>
 C:    </update>
 C:    <extension>
-C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 C:        <rgp:restore op="request"/>
 C:      </rgp:update>
 C:    </extension>
@@ -696,7 +696,7 @@ C:        <domain:chg/>
 C:      </domain:update>
 C:    </update>
 C:    <extension>
-C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+C:      <rgp:update xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 C:        <rgp:restore op="report">
 C:          <rgp:report>
 C:            <rgp:preData>Pre-delete registration data goes here.
@@ -744,7 +744,7 @@ S:    <result code="1000">
 S:      <msg lang="en">Command completed successfully</msg>
 S:    </result>
 S:    <extension>
-S:      <rgp:upData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
+S:      <rgp:upData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1">
 S:        <rgp:rgpStatus s="pendingRestore"/>
 S:      </rgp:upData>
 S:    </extension>
@@ -779,8 +779,8 @@ The "<tt>BEGIN</tt>" and "<tt>END</tt>" tags are not part of the schema; they ar
 BEGIN
 <?xml version="1.0" encoding="UTF-8"?>
 
-<schema targetNamespace="urn:ietf:params:xml:ns:rgp-1.0"
-        xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0"
+<schema targetNamespace="urn:ietf:params:xml:ns:rgp-1.1"
+        xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.1"
         xmlns="http://www.w3.org/2001/XMLSchema"
         elementFormDefault="qualified">
 
@@ -942,7 +942,7 @@ Registration request for the registry grace period namespace:
 </t>
 
 <t>
-URI: urn:ietf:params:xml:ns:rgp-1.0
+URI: urn:ietf:params:xml:ns:rgp-1.1
 </t>
 
 <t>
@@ -958,7 +958,7 @@ Registration request for the registry grace period XML schema:
 </t>
 
 <t>
-URI: urn:ietf:params:xml:schema:rgp-1.0
+URI: urn:ietf:params:xml:schema:rgp-1.1
 </t>
 
 <t>
