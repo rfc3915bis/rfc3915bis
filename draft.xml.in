@@ -55,6 +55,21 @@ Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol
   </address>
 </author>
 
+<author fullname="Richard Wilhelm">
+  <organization>Public Interest Registry (PIR)</organization>
+  <address>
+    <postal>
+      <street>11911 Freedom Drive, 10th Floor, Suite 1000</street>
+      <city>Reston</city>
+      <region>VA</region>
+      <code>20190</code>
+      <country>US</country>
+    </postal>
+    <email>4rickwilhelm@gmail.com</email>
+    <uri>https://pir.org</uri>
+  </address>
+</author>
+
 <author fullname="Gavin Brown">
   <organization>ICANN</organization>
   <address>
