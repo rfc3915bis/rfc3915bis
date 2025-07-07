@@ -27,7 +27,7 @@
 
 <rfc
   category="std"
-  docName="draft-carney-regext-rfc3915bis-00"
+  docName="draft-carney-regext-rfc3915bis-01"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -1029,6 +1029,14 @@ Any attempt to recover a deleted domain object by any client other than the spon
 </t>
 
 </section><!-- Security Considerations -->
+
+<section title="Acknowledgements">
+
+<t>
+The authors wish to acknowledge the contributions of Scott Hollenbeck, author of <xref target="RFC3915" />, both to that document and to this one.
+</t>
+
+</section><!-- Acknowledgements -->
 
 </middle>
 
