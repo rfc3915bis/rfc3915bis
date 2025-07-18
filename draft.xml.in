@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+TODO:
+
+Because this document would obsolete RFC 3915, it needs to include text that
+lets IANA know whether to replace existing references in the registries. The XML
+and EPP Extensions registrations are accounted for, but several entries in the
+RDAP JSON Values registry (https://www.iana.org/assignments/rdap-json-values)
+mention RFC 3915 in their reference fields.
+
+We need to add a note indicating that references in that registry
+should/shouldn’t be replaced with references to this document.
+
+-->
+
 <!DOCTYPE rfc [
 <!ENTITY RFC954 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.954.xml">
 <!ENTITY RFC2119 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
