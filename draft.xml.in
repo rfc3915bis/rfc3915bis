@@ -58,17 +58,7 @@ Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol
 </title>
 
 <author fullname="Roger Carney">
-  <organization>GoDaddy Inc.</organization>
-  <address>
-    <postal>
-      <street>14455 N. Hayden Rd. #219</street>
-      <city>Scottsdale</city>
-      <region>AZ</region>
-      <code>85260</code>
-      <country>US</country>
-    </postal>
-    <email>rcarney@godaddy.com</email>
-    <uri>https://www.godaddy.com/</uri>
+    <email>roger@carney.email</email>
   </address>
 </author>
 
