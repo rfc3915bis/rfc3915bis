@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-
-TODO:
-
-Because this document would obsolete RFC 3915, it needs to include text that
-lets IANA know whether to replace existing references in the registries. The XML
-and EPP Extensions registrations are accounted for, but several entries in the
-RDAP JSON Values registry (https://www.iana.org/assignments/rdap-json-values)
-mention RFC 3915 in their reference fields.
-
-We need to add a note indicating that references in that registry
-should/shouldn’t be replaced with references to this document.
-
--->
-
 <!DOCTYPE rfc [
 <!ENTITY RFC954 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.954.xml">
 <!ENTITY RFC2119 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
@@ -27,6 +12,7 @@ should/shouldn’t be replaced with references to this document.
 <!ENTITY RFC5731 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml">
 <!ENTITY RFC7451 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7451.xml">
 <!ENTITY RFC8174 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!ENTITY RFC9083 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
@@ -942,40 +928,15 @@ As an extension of <xref target="RFC5731">the EPP domain mapping</xref>, the ele
 
 <t>
 This document uses URNs to describe XML namespaces and XML schemas conforming to a registry mechanism described in <xref target="RFC3688"/>.
-Two URI assignments are requested of the IANA.
 </t>
 
 <t>
-Registration request for the registry grace period namespace:
+It not change either the XML namespace URI, or the XML schema, that were originally registered in IETF XML Registry by <xref target="RFC3915"/>.
 </t>
 
 <t>
-URI: urn:ietf:params:xml:ns:rgp-1.0
-</t>
-
-<t>
-Registrant Contact: See the "Author's Address" section of this document.
-</t>
-
-<t>
-XML: None.  Namespace URIs do not represent an XML specification.
-</t>
-
-<t>
-Registration request for the registry grace period XML schema:
-</t>
-
-<t>
-URI: urn:ietf:params:xml:schema:rgp-1.0
-</t>
-
-<t>
-Registrant Contact: See the "Author's Address" section of this
-document.
-</t>
-
-<t>
-XML: See the "Formal Syntax" section of this document.
+However, IANA is requested to update those registrations to replace references to <xref target="RFC3915"/> with references to this document, instead.
+No other changes to those registrations are required.
 </t>
 
 </section><!-- XML Namespace -->
@@ -983,43 +944,22 @@ XML: See the "Formal Syntax" section of this document.
 <section title="EPP Extension Registry">
 
 <t>
-IANA is requested to register the EPP exetension described in this document in the "Extensions for the Extensible Provisioning Protocol (EPP)" registry described in <xref target="RFC7451"/>.
-The details of the registration are as follows:
-</t>
-
-<t>
-Name of Extension: Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol (EPP)
-</t>
-
-<t>
-Document Status: Standards Track
-</t>
-
-<t>
-Reference: URL of this document
-</t>
-
-<t>
-Registrant: IESG
-</t>
-
-<t>
-TLDs: Any
-</t>
-
-<t>
-IPR Disclosure: None
-</t>
-
-<t>
-Status: Active
-</t>
-
-<t>
-Notes: None
+IANA is requested to update the entry in the "Extensions for the Extensible Provisioning Protocol (EPP)" registry described in <xref target="RFC7451"/>.
+For the entry named "Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol (EPP)", the reference should be changed from <xref target="RFC3915"/>, to this document.
+No other changes to the registration are required.
 </t>
 
 </section><!-- EPP Extension Registry -->
+
+<section title="RDAP JSON Values Registry">
+
+<t>
+The "RDAP JSON Values" registry (see <xref target="RFC9083"/>) includes several entries which reference <xref target="RFC3915"/>.
+IANA is requested to replace those references with references to this document.
+No other changes to those registrations are required.
+</t>
+
+</section><!-- RDAP JSON Values Registry -->
 
 </section><!-- IANA Considerations -->
 
@@ -1050,7 +990,7 @@ The authors wish to acknowledge the contributions of Scott Hollenbeck, author of
   <section>
     <name>Changes from draft-carney-regext-rfc3915bis-01 to draft-carney-regext-rfc3915bis-02</name>
     <ul>
-      <li>The namespace URI has been reverted to that used in RFC 3915 since the schema has not changed.</li>
+      <li>The namespace URI has been reverted to that used in <xref target="RFC3915"/>, since the schema has not changed.</li>
     </ul>
   </section>
 
@@ -1092,6 +1032,7 @@ The authors wish to acknowledge the contributions of Scott Hollenbeck, author of
 </references>
 
 <references title="Informative references">
+    &RFC9083;
 </references>
 
 </back>
