@@ -1045,6 +1045,23 @@ The authors wish to acknowledge the contributions of Scott Hollenbeck, author of
 
 </section><!-- Acknowledgements -->
 
+<section anchor="changes">
+  <name>Change Log</name>
+  <section>
+    <name>Changes from draft-carney-regext-rfc3915bis-01 to draft-carney-regext-rfc3915bis-02</name>
+    <ul>
+      <li>The namespace URI has been reverted to that used in RFC 3915 since the schema has not changed.</li>
+    </ul>
+  </section>
+
+  <section>
+    <name>Changes from draft-carney-regext-rfc3915bis-00 to draft-carney-regext-rfc3915bis-01</name>
+    <ul>
+      <li>None.</li>
+    </ul>
+  </section>
+</section>
+
 </middle>
 
 <back>
