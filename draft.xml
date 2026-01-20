@@ -931,7 +931,7 @@ This document uses URNs to describe XML namespaces and XML schemas conforming to
 </t>
 
 <t>
-It not change either the XML namespace URI, or the XML schema, that were originally registered in IETF XML Registry by <xref target="RFC3915"/>.
+It does not change either the XML namespace URI, or the XML schema, that were originally registered in IETF XML Registry by <xref target="RFC3915"/>.
 </t>
 
 <t>
