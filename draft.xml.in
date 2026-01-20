@@ -966,7 +966,7 @@ Registration request for the registry grace period XML schema:
 </t>
 
 <t>
-URI: urn:ietf:params:xml:schema:rgp-1.1
+URI: urn:ietf:params:xml:schema:rgp-1.0
 </t>
 
 <t>
