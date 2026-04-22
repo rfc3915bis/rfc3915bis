@@ -29,7 +29,7 @@
 
 <rfc
   category="std"
-  docName="draft-carney-regext-rfc3915bis-02"
+  docName="draft-carney-regext-rfc3915bis-03"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -76,6 +76,12 @@ Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol
     </postal>
     <email>gavin.brown@icann.org</email>
     <uri>https://www.icann.org/</uri>
+  </address>
+</author>
+
+<author fullname="Scott Hollenbeck">
+	<address>
+    <email>sah@sahollenbeck.com</email>
   </address>
 </author>
 
@@ -977,16 +983,16 @@ Any attempt to recover a deleted domain object by any client other than the spon
 
 </section><!-- Security Considerations -->
 
-<section title="Acknowledgements">
-
-<t>
-The authors wish to acknowledge the contributions of Scott Hollenbeck, author of <xref target="RFC3915" />, both to that document and to this one.
-</t>
-
-</section><!-- Acknowledgements -->
-
 <section anchor="changes">
   <name>Change Log</name>
+
+	<section>
+		<name>Changes from draft-carney-regext-rfc3915bis-02 to draft-carney-regext-rfc3915bis-03</name>
+		<ul>
+			<li>Correct error that omitted Scott Hollenbeck as an author.</li>
+		</ul>
+	</section>
+
   <section>
     <name>Changes from draft-carney-regext-rfc3915bis-01 to draft-carney-regext-rfc3915bis-02</name>
     <ul>
@@ -1000,7 +1006,7 @@ The authors wish to acknowledge the contributions of Scott Hollenbeck, author of
       <li>None.</li>
     </ul>
   </section>
-</section>
+</section><!-- Changes -->
 
 </middle>
 
