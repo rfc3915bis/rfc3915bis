@@ -29,7 +29,7 @@
 
 <rfc
   category="std"
-  docName="draft-carney-regext-rfc3915bis-03"
+  docName="draft-ietf-regext-rfc3915bis-00"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -985,6 +985,13 @@ Any attempt to recover a deleted domain object by any client other than the spon
 
 <section anchor="changes">
   <name>Change Log</name>
+
+	<section>
+		<name>Changes from draft-carney-regext-rfc3915bis-03 to draft-ietf-regext-rfc3915bis-00</name>
+		<ul>
+			<li>Only the name change.</li>
+		</ul>
+	</section>
 
 	<section>
 		<name>Changes from draft-carney-regext-rfc3915bis-02 to draft-carney-regext-rfc3915bis-03</name>
