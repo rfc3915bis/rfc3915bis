@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!DOCTYPE rfc [
-<!ENTITY RFC954 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.954.xml">
 <!ENTITY RFC2119 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2781 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2781.xml">
 <!ENTITY RFC3339 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3339.xml">
 <!ENTITY RFC3629 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3629.xml">
 <!ENTITY RFC3688 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3688.xml">
+<!ENTITY RFC3912 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3912.xml">
 <!ENTITY RFC3915 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3915.xml">
 <!ENTITY RFC5730 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC5731 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml">
@@ -346,7 +346,7 @@ A domain in this status MUST also be in the "<tt>pendingDelete</tt>" status desc
 <section title="Registration Data and Supporting Information">
 
 <t>
-This extension allows a client to provide copies of registration data (<xref target="RFC954">whois</xref> data, for example) and supporting information in a restore report as required by the RGP process.
+This extension allows a client to provide copies of registration data (<xref target="RFC3912">whois</xref> data, for example) and supporting information in a restore report as required by the RGP process.
 No specific format is required by this extension; both free text and XML markup MAY be used.
 </t>
 
@@ -1020,7 +1020,7 @@ Any attempt to recover a deleted domain object by any client other than the spon
 <back>
 
 <references title="Normative references">
-  &RFC954;
+  &RFC3912;
   &RFC2119;
   &RFC2781;
   &RFC3339;
