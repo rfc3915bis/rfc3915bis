@@ -29,7 +29,7 @@
 
 <rfc
   category="std"
-  docName="draft-ietf-regext-rfc3915bis-00"
+  docName="draft-ietf-regext-rfc3915bis-01"
   ipr="trust200902"
   submissionType="IETF"
   consensus="true"
@@ -343,7 +343,7 @@ A domain in this status <bcp14>MUST</bcp14> also be in the "<tt>pendingDelete</t
 
 </section><!-- Status Values -->
 
-<section title="Registration Data and Supporting Information">
+<section title="Registration Data and Supporting Information" anchor="reg-data">
 
 <t>
 This extension allows a client to provide copies of registration data (<xref target="STD95">RDAP</xref> or <xref target="RFC3912">whois</xref> data, for example) and supporting information in a restore report as required by the RGP process.
@@ -957,7 +957,7 @@ No other changes to the registration are required.
 
 </section><!-- EPP Extension Registry -->
 
-<section title="RDAP JSON Values Registry">
+<section title="RDAP JSON Values Registry" anchor="iana-rdap-json-values">
 
 <t>
 The "RDAP JSON Values" registry (see <xref target="RDAP-JSON-VALUES"/>) includes several entries which reference <xref target="RFC3915"/>.
@@ -985,6 +985,15 @@ Any attempt to recover a deleted domain object by any client other than the spon
 
 <section anchor="changes">
   <name>Change Log</name>
+
+  <section>
+    <name>Changes from draft-ietf-regext-rfc3915bis-00 to draft-ietf-regext-rfc3915bis-01</name>
+    <ul>
+      <li>Updated obsolete reference to RFC 952 to <xref target="RFC3912"/>.</li>
+      <li>Discussed RDAP in <xref target="reg-data"/>.</li>
+      <li>Updated <xref target="iana-rdap-json-values"/> to reference <xref target="RDAP-JSON-VALUES"/> instead of RFC 9083.</li>
+    </ul>
+  </section>
 
 	<section>
 		<name>Changes from draft-carney-regext-rfc3915bis-03 to draft-ietf-regext-rfc3915bis-00</name>
