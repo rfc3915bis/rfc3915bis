@@ -11,7 +11,6 @@
 <!ENTITY RFC5730 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC5731 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5731.xml">
 <!ENTITY RFC7451 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7451.xml">
-<!ENTITY RFC9083 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml">
 ]>
 
 <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
@@ -959,7 +958,7 @@ No other changes to the registration are required.
 <section title="RDAP JSON Values Registry">
 
 <t>
-The "RDAP JSON Values" registry (see <xref target="RFC9083"/>) includes several entries which reference <xref target="RFC3915"/>.
+The "RDAP JSON Values" registry (see <xref target="RDAP-JSON-VALUES"/>) includes several entries which reference <xref target="RFC3915"/>.
 IANA is requested to replace those references with references to this document.
 No other changes to those registrations are required.
 </t>
@@ -1040,10 +1039,21 @@ Any attempt to recover a deleted domain object by any client other than the spon
       <date month="October" year="2004"/>
     </front>
   </reference>
+
+  <reference
+    anchor="RDAP-JSON-VALUES"
+    target="https://www.iana.org/assignments/rdap-json-values/rdap-json-values.xhtml">
+    <front>
+      <title>RDAP JSON Values</title>
+      <author>
+        <organization>IANA</organization>
+      </author>
+    </front>
+  </reference>
+
 </references>
 
 <references title="Informative references">
-    &RFC9083;
 </references>
 
 </back>
