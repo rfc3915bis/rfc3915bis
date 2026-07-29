@@ -336,7 +336,7 @@ This status value is used to describe a domain that is in the process of being r
 <dt><tt>pendingDelete</tt></dt>
 <dd>
 This status value is used to describe a domain that has entered the purge processing state after completing the "<tt>redemptionPeriod</tt>" state.
-A domain in this status MUST also be in the "<tt>pendingDelete</tt>" status described in <xref section="2.3" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
+A domain in this status <bcp14>MUST</bcp14> also be in the "<tt>pendingDelete</tt>" status described in <xref section="2.3" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>.
 </dd>
 
 </dl>
@@ -359,7 +359,7 @@ This information can be useful to people who want to understand the operations t
 
 <section title="Dates and Times">
 <t>
-Date and time attribute values MUST be represented in Universal Coordinated Time (UTC) using the Gregorian calendar.
+Date and time attribute values <bcp14>MUST</bcp14> be represented in Universal Coordinated Time (UTC) using the Gregorian calendar.
 The extended date-time form using upper case "<tt>T</tt>" and "<tt>Z</tt>" characters defined in <xref target="RFC3339"/> <bcp14>MUST</bcp14> be used to represent date-time values as XML Schema does not support truncated date-time forms or lower case "<tt>T</tt>" and "<tt>Z</tt>" characters.
 </t>
 </section><!-- Dates and Times -->
@@ -367,8 +367,8 @@ The extended date-time form using upper case "<tt>T</tt>" and "<tt>Z</tt>" chara
 <section title="Client Statements">
 <t>
 The RGP process requires a client to make two statements regarding the data included in a restore report.
-No specific format is required by this extension; both free text and XML markup MAY be used.
-English is the default language used within the statements, but other languages MAY be used.
+No specific format is required by this extension; both free text and XML markup <bcp14>MAY</bcp14> be used.
+English is the default language used within the statements, but other languages <bcp14>MAY</bcp14> be used.
 </t>
 </section><!-- Client Statements -->
 
@@ -598,7 +598,7 @@ This requirement is updated to disallow the possibility of modifying a domain ob
 <t>
 In addition to the EPP command elements described in <xref section="4.2.5" sectionFormat="of" target="RFC5731">the EPP domain mapping</xref>, the <tt>&lt;update&gt;</tt> command <bcp14>MUST</bcp14> contain an <tt>&lt;extension&gt;</tt> element.
 The <tt>&lt;extension&gt;</tt> element <bcp14>MUST</bcp14> contain a child <tt>&lt;rgp:update&gt;</tt> element that identifies the registry grace period namespace and the location of the registry grace period schema.
-The <tt>&lt;rgp:update&gt;</tt> element contains a single <tt>&lt;rgp:restore&gt;</tt> element that contains an <bcp14>OPTIONAL</bcp14> <tt>&lt;rgp:report&gt;</tt> element that MAY be used to deliver a redemption grace period restore report.
+The <tt>&lt;rgp:update&gt;</tt> element contains a single <tt>&lt;rgp:restore&gt;</tt> element that contains an <bcp14>OPTIONAL</bcp14> <tt>&lt;rgp:report&gt;</tt> element that <bcp14>MAY</bcp14> be used to deliver a redemption grace period restore report.
 </t>
 
 <t>
@@ -640,12 +640,12 @@ An <tt>&lt;rgp:resReason&gt;</tt> element that contains a brief explanation of t
 <li>
 An <tt>&lt;rgp:statement&gt;</tt> element that contains a text statement that the client has not restored the domain name in order to assume the rights to use or sell the domain name for itself or for any third party.
 Supporting information related to this statement <bcp14>MAY</bcp14> be supplied in the <tt>&lt;rgp:other&gt;</tt> element described below.
-An OPTIONAL &quot;lang&quot; attribute <bcp14>MAY</bcp14> be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
+An <bcp14>OPTIONAL</bcp14> &quot;lang&quot; attribute <bcp14>MAY</bcp14> be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
 </li>
 
 <li>
 A second <tt>&lt;rgp:statement&gt;</tt> element that contains a text statement that the information in the restore report is factual to the best of the client's knowledge.
-An <bcp14>OPTIONAL</bcp14> &quot;<tt>lang</tt>&quot; attribute MAY be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
+An <bcp14>OPTIONAL</bcp14> &quot;<tt>lang</tt>&quot; attribute <bcp14>MAY</bcp14> be present to identify the language if English (value &quot;<tt>en</tt>&quot;) is not used to represent the statement.
 </li>
 
 <li>
