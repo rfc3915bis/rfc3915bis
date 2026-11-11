@@ -70,12 +70,6 @@ Domain Registry Grace Period Mapping for the Extensible Provisioning Protocol
   </address>
 </author>
 
-<author fullname="Scott Hollenbeck">
-	<address>
-    <email>sah@sahollenbeck.com</email>
-  </address>
-</author>
-
 <date/>
 <area>Applications</area>
 <workgroup>Registration Protocols Extensions (regext)</workgroup>
@@ -974,7 +968,11 @@ Any attempt to recover a deleted domain object by any client other than the spon
 
 </section><!-- Security Considerations -->
 
-<section anchor="changes">
+<section anchor="thx">
+<t>The authors of this document wish to thank Steve Hollenbeck for his work in <xref target="RFC3915"/>, and his advice and support in creating this document, and many others.</t>
+</section>
+
+<section anchor="changes" removeInRFC="true">
   <name>Change Log</name>
 
   <section>
