@@ -725,8 +725,8 @@ Example &quot;restore request&quot; &lt;<tt>update</tt>&gt; response:
 S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 S:  <response>
-S:    <result code="1000">
-S:      <msg lang="en">Command completed successfully</msg>
+S:    <result code="1001">
+S:      <msg lang="en">Command completed successfully; action pending</msg>
 S:    </result>
 S:    <extension>
 S:      <rgp:upData xmlns:rgp="urn:ietf:params:xml:ns:rgp-1.0">
