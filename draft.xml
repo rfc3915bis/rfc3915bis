@@ -969,6 +969,7 @@ Any attempt to recover a deleted domain object by any client other than the spon
 </section><!-- Security Considerations -->
 
 <section anchor="thx">
+  <name>Acknowledgements</name>
 <t>The authors of this document wish to thank Steve Hollenbeck for his work in <xref target="RFC3915"/>, and his advice and support in creating this document, and many others.</t>
 </section>
 
